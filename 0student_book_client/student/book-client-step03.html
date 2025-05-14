@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="css/form.css" />
+    <title>도서 관리 시스템</title>
+  </head>
+  <body>
+    <h1>도서 관리 시스템</h1>
+
+    <div class=""form-container">
+      <h2>도서 등록</h2>
+      <form id="bookForm">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="title">제목:</label>
+            <input type="text" name="title" id="title" />
+          </div>
+          <div class="form-group">
+            <label for="author">작가:</label>
+            <input type="text" name="author" id="author" />
+          </div>
+          <div class="form-group">
+            <label for="isbn">주소:</label>
+            <input type="text" name="isbn" id="isbn" />
+          </div>
+          <div class="form-group">
+            <label for="price">가격:</label>
+            <input type="text" name="price" id="price" />
+          </div>
+          <div class="form-group">
+            <label for="publishDate">발행일:</label>
+            <input type="date" name="publishDate" id="publishDate" />
+          </div>
+          <div class="form-group">
+            <label for="description">도서 설명:</label>
+            <input type="text" name="description" id="description" />
+          </div>
+          <div class="form-group">
+            <label for="language">언어:</label>
+            <input type="text" name="language" id="language" />
+          </div>
+          <div class="form-group">
+            <label for="pageCount">페이지 수:</label>
+            <input type="text" name="pageCount" id="pageCount" />
+          </div>
+          <div class="form-group">
+            <label for="publisher">발행지:</label>
+            <input type="text" name="publisher" id="publisher" />
+          </div>
+          <div class="form-group">
+            <label for="coverImageUrl">도서 커버 이미지 링크:</label> 
+            <input type="text" name="coverImageUrl" id="coverImageUrl" />
+          </div>
+          <div class="form-group">
+            <label for="edition">edition:</label>
+            <input type="text" name="edition" id="edition" />
+          </div>
+        </div>
+          <button type="submit">도서 등록</button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <h2>도서 목록</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>제목</th>
+            <th>작가</th>
+            <th>isbn</th>
+            <th>가격</th>
+            <th>발행일</th>
+            <th>도서 설명</th>
+            <th>언어</th>
+            <th>페이지 수</th>
+            <th>발행지</th>
+            <th>도서 커버 이미지 링크</th>
+            <th>edition</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </body>
+</html>
