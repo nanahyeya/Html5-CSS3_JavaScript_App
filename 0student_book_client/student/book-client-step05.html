@@ -11,47 +11,62 @@
 
     <div class=""form-container">
       <h2>도서 등록</h2>
-      <form id="bookForm">
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="title">제목:</label>
-            <input type="text" name="title" id="title" />
+      <form id="bookForm">          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="title">제목:</label>
+              <input type="text" name="title" id="title" />
+            </div>
+            <div class="form-group">
+              <label for="author">작가:</label>
+              <input type="text" name="author" id="author" />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="author">작가:</label>
-            <input type="text" name="author" id="author" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="isbn">isbn:</label>
+              <input type="text" name="isbn" id="isbn" />
+            </div>
+            <div class="form-group">
+              <label for="price">가격:</label>
+              <input type="text" name="price" id="price" />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="isbn">isbn:</label>
-            <input type="text" name="isbn" id="isbn" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="publishDate">발행일:</label>
+              <input type="date" name="publishDate" id="publishDate" />
+            </div>
+            <div class="form-group">
+              <label for="description">도서 설명:</label>
+              <input type="text" name="description" id="description" />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="price">가격:</label>
-            <input type="text" name="price" id="price" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="language">언어:</label>
+              <input type="text" name="language" id="language" />
+            </div>
+            <div class="form-group">
+              <label for="pageCount">페이지 수:</label>
+              <input type="text" name="pageCount" id="pageCount" />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="publishDate">발행일:</label>
-            <input type="date" name="publishDate" id="publishDate" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="publisher">발행지:</label>
+              <input type="text" name="publisher" id="publisher" />
+            </div>
+            <div class="form-group">
+              <label for="coverImageUrl">도서 커버 이미지 링크:</label> 
+              <input type="text" name="coverImageUrl" id="coverImageUrl" />
+            </div>
           </div>
-          <div class="form-group">
-            <label for="description">도서 설명:</label>
-            <input type="text" name="description" id="description" />
+          <div class="form-row">
+            
           </div>
-          <div class="form-group">
-            <label for="language">언어:</label>
-            <input type="text" name="language" id="language" />
-          </div>
-          <div class="form-group">
-            <label for="pageCount">페이지 수:</label>
-            <input type="text" name="pageCount" id="pageCount" />
-          </div>
-          <div class="form-group">
-            <label for="publisher">발행지:</label>
-            <input type="text" name="publisher" id="publisher" />
-          </div>
-          <div class="form-group">
-            <label for="coverImageUrl">도서 커버 이미지 링크:</label> 
-            <input type="text" name="coverImageUrl" id="coverImageUrl" />
+          <div class="form-row">
+            
           </div>
           <div class="form-group">
             <label for="edition">edition:</label>
@@ -59,7 +74,6 @@
           </div>
         </div>
           <button type="submit">도서 등록</button>
-        </div>
       </form>
     </div>
 

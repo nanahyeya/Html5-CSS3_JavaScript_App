@@ -149,14 +149,25 @@ tr:hover {
     /* 그리드 항목 간 15픽셀 간격 설정 (수정됨: 원래 15px) */
 }
 
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+
+.textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
 /* 각 폼 그룹의 스타일을 설정합니다 */
 .form-group {
-    display: flex;
-    /* Flexbox 레이아웃 사용 */
-    flex-direction: column;
-    /* 자식 요소들을 세로로 배치 */
-    margin-bottom: 15px;
-    /* 각 form-group 아래에 15픽셀 여백 추가*/
+    flex: 1;
 }
 
 /* 폼 그룹 내의 라벨 스타일을 설정합니다 */
