@@ -1,10 +1,13 @@
 //전역변수
 const API_BASE_URL = "http://localhost:8080";
+//현재 수정중인 학생 ID
+let editingStudentId = null;
 
 //DOM 엘리먼트 가져오기
 const studentForm = document.getElementById("studentForm");
 const studentTableBody = document.getElementById("studentTableBody");
 const cancelButton = studentForm.querySelector('.cancel-btn');
+const submitButton = studentForm.querySelector('button[type="submit"]');
 
 //Document Load 이벤트 처리하기
 document.addEventListener("DOMContentLoaded", function () {
@@ -43,8 +46,14 @@ studentForm.addEventListener("submit", function (event) {
     //유효한 데이터 출력하기
     //console.log(studentData);
 
-    //서버로 Student 등록 요청하기
-    createStudent(studentData);
+    //현재 수정중인 학생 ID가 있으면 
+    if (editingStudentId) {
+        //서버로 Student 수정 요청하기
+        updateStudent(editingStudentId, studentData);
+    } else {
+        //서버로 Student 등록 요청하기
+        createStudent(studentData);
+    }
 
 });
 
@@ -76,7 +85,7 @@ function validateStudent(student) {// 필수 필드 검사
     }
     // 학번 형식 검사 (예: 영문과 숫자 조합)
     //const studentNumberPattern = /^[A-Za-z0-9]+$/;
-    const studentNumberPattern = /^s\d{5}$/;
+    const studentNumberPattern = /^S\d{5}$/;
     if (!studentNumberPattern.test(student.studentNumber)) {
         alert("학번은 영문과 숫자만 입력 가능합니다.");
         return false;
@@ -233,16 +242,67 @@ function editStudent(studentId) {
             //Form에 데이터 채우기
             studentForm.name.value = student.name;
             studentForm.studentNumber.value = student.studentNumber;
-            if(student.detail) {
+            if (student.detail) {
                 studentForm.address.value = student.detail.address;
                 studentForm.phoneNumber.value = student.detail.phoneNumber;
                 studentForm.email.value = student.detail.email;
                 studentForm.dateOfBirth.value = student.detail.dateOfBirth || '';
             }
+
+            //수정 Mode 설정
+            editingStudentId = studentId;
+            //버튼의 타이틀을 등록 => 수정으로 변경
+            submitButton.textContent = "학생 수정";
+            //취소 버튼을 활성화
+            cancelButton.style.display = 'inline-block';
         })
         .catch((error) => {
             console.log('Error : ', error);
             alert(error.message);
         });
 
+}
+// 수정 모드에서 등록 모드로 초기화 하는 함수
+function resetForm() {
+    //form 초기화
+    studentForm.reset();
+    editingStudentId = null;
+    submitButton.textContent = "학생 등록";
+    //취소버튼 사라짐
+    cancelButton.style.display = 'none';
+}
+
+// 학생 수정 처리하는 함수
+function updateStudent(studentId, studentData) {
+    fetch(`${API_BASE_URL}/api/students/${studentId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(studentData)  //Object => json
+    })
+        .then(async (response) => {
+            if (!response.ok) {
+                //응답 본문을 읽어서 에러 메시지 추출
+                const errorData = await response.json();
+                //status code와 message를 확인하기
+                if (response.status === 409) {
+                    //중복 오류 처리
+                    throw new Error(errorData.message || '중복 되는 정보가 있습니다.');
+                } else {
+                    //기타 오류 처리
+                    throw new Error(errorData.message || '학생 수정에 실패했습니다.')
+                }
+            }
+            return response.json();
+        })
+        .then((result) => {
+            alert("학생이 성공적으로 수정되었습니다!");
+            // 등록 모드로 초기화
+            resetForm();
+            //목록 새로 고침
+            loadStudents();
+        })
+        .catch((error) => {
+            console.log('Error : ', error);
+            alert(error.message);
+        });
 }
